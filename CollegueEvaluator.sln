@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegueEvaluator", "CollegueEvaluator\CollegueEvaluator.csproj", "{A1D98E12-7469-4F74-85F9-E01F339270F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegueEvaluator.Logic", "CollegueEvaluator.Logic\CollegueEvaluator.Logic.csproj", "{D4C84E20-7BA2-4EE9-AA87-9B38EC218E54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1D98E12-7469-4F74-85F9-E01F339270F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D98E12-7469-4F74-85F9-E01F339270F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D98E12-7469-4F74-85F9-E01F339270F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D98E12-7469-4F74-85F9-E01F339270F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C84E20-7BA2-4EE9-AA87-9B38EC218E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C84E20-7BA2-4EE9-AA87-9B38EC218E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C84E20-7BA2-4EE9-AA87-9B38EC218E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C84E20-7BA2-4EE9-AA87-9B38EC218E54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80F50E90-1726-4A8B-B9F2-B97E146249B2}
+	EndGlobalSection
+EndGlobal
