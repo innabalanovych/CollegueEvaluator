@@ -1,0 +1,19 @@
+﻿@model string
+
+@{
+	ViewData["Title"] = "Result Page";
+}
+
+<div style="display: flex; justify-content: center; margin-top: 20px">
+	Оцінка співробітника: @Model
+</div>
+
+<br/>        
+<br/>        
+<br/>  
+
+<div style="display: flex; justify-content: center; margin-top: 20px">
+
+	<button class="btn btn-primary btn-sm"
+	onclick="location.href='@Url.Action("Reset", "Home")'" >Очистити оцінювання</button>
+</div>
