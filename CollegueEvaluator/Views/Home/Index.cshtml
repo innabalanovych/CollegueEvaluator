@@ -1,9 +1,14 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using ColleagueEvaluator.Logic.Enums
+@using ColleagueEvaluator.Logic.Services
+@using CollegueEvaluator.Services
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
 @model Evaluation
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+@inject IComputingWordsService computingWordsService
+@inject IEvaluationService evaluationService
 
 @{
     ViewData["Title"] = "Оцінювання колег";
@@ -15,38 +20,38 @@
 		<div class="alert alert-info" role="alert">
 		  Ви увійшли як адміністратор і маєте можливість переглядати результат.
 		</div>
+		<div style="display: flex; align-items: center; flex-direction: column;">
+			<div style="width: 400px">
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">ПІБ працівника</span>
+				  </div>
+				  <input id="inputUsername" type="text" class="form-control" aria-label="Ім'я співробітника" aria-describedby="inputGroup-sizing-default">
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary" onclick="createSomething()">Створити код</button>
+			<div id='generatedLink'></div>
+		</div>
+		
 	}
-
-	<br/>
-    <div style="display: flex; justify-content: center;">
-	<form method="post" action="Home/Save"
-		  style="max-width: 600px; width: 100%; border: gray solid 1px; border-radius: 10px; padding: 15px">
-		<div class="mb-3">
-			<label for="responsibilityInput" class="form-label" style="width: 150px;">Відповідальність</label>
-			@Html.DropDownListFor(model => model.Responsibility, new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name)), "-- Оберіть значення --")
+	else
+	{
+		<div class="alert alert-info" role="alert">
+			Зверніться до вашого адміністратора за спеціальним кодом для голосування.
 		</div>
-		<div class="mb-3">
-			<label for="performanceInput" class="form-label" style="width: 150px;">Продуктивність</label>
-			@Html.DropDownListFor(model => model.Performance, new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name)), "-- Оберіть значення --")
-		
-		</div>
-		<div class="mb-3">
-			<label for="communicationSkillsInput" class="form-label" style="width: 150px;">Комунікація</label>
-			@Html.DropDownListFor(model => model.СommunicationSkills, new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name)), "-- Оберіть значення --")
-		
-		</div>
-		<div class="mb-3">
-			<label for="qualificationInput" class="form-label" style="width: 150px;">Кваліфікація</label>
-			@Html.DropDownListFor(model => model.Qualification, new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name)), "-- Оберіть значення --")
-		
-		</div>
-		<button type="submit" class="btn btn-primary">Підтвердити</button>
-	</form>
-</div>
+	}
 }
-else{
+else
+{
     <div class="alert alert-primary" role="alert">
         Щоб розпочати оцінювання увійдіть до системи!
     </div>
-
 }
+
+<script>
+	function createSomething() {
+		let inputvalue = document.getElementById('inputUsername').value;
+		let generatedLink = document.getElementById('generatedLink');
+		generatedLink.innerText = 'Посилання - https://localhost:7244/evaluation/' + inputvalue;
+	}
+</script>

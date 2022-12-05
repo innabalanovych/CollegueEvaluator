@@ -1,16 +1,26 @@
-﻿@model string
+﻿@model EvaluationResultModel
 
 @{
 	ViewData["Title"] = "Result Page";
 }
 
 <div style="display: flex; justify-content: center; margin-top: 20px">
-	Оцінка співробітника: @Model
+	Оцінка співробітника @ViewBag.Username
 </div>
 
-<br/>        
-<br/>        
-<br/>  
+
+
+<div style="display: flex; justify-content: center; margin-top: 20px">
+	<div>
+		Відповідальність: @Model.Responsibility<br />
+		Продуктивність: @Model.Performance<br />
+		Вміння комунікувати: @Model.СommunicationSkills<br />
+		Кваліфікація: @Model.Qualification<br />
+	</div>
+</div>
+<br/>
+<br/>
+<br/>
 
 <div style="display: flex; justify-content: center; margin-top: 20px">
 

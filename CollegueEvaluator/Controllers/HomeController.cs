@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 using CollegueEvaluator.Data;
+using ColleagueEvaluator.Logic.Services;
+using CollegueEvaluator.Services;
 
 namespace CollegueEvaluator.Controllers
 {
@@ -13,19 +15,23 @@ namespace CollegueEvaluator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<IdentityUser> _userManager;
-        public SelectList Options { get; set; }
-        private ApplicationDbContext Context { get; }
-        public void OnGet()
-        {
-            Options = new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name));
-        }
+        private readonly IComputingWordsService _computingWordsService;
+        private readonly IEvaluationService _evaluationService;
 
-        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger, UserManager<IdentityUser> userManager)
+        private ApplicationDbContext _dbContext { get; }
+
+        public HomeController(
+            ApplicationDbContext context,
+            ILogger<HomeController> logger,
+            UserManager<IdentityUser> userManager,
+            IComputingWordsService computingWordsService,
+            IEvaluationService evaluationService)
         {
             _logger = logger;
-            this.Context = context;
+            _dbContext = context;
             _userManager = userManager;
-            // ViewBag.CategoryList = new SelectList(CollegueEvaluator.Logic.WordsModel.GetWords().Select(x => x.Name));
+            _computingWordsService = computingWordsService;
+            _evaluationService = evaluationService;
         }
 
         public IActionResult Index()
@@ -33,41 +39,50 @@ namespace CollegueEvaluator.Controllers
             return View();
         }
 
+        [Route("Evaluation/{username}")]
+        public IActionResult FormForEvaluation(string username)
+        {
+            ViewBag.ShowResultButton = true;
+            ViewBag.Username = username;
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
         }
+
         public IActionResult Save(Evaluation model)
         {
             model.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             model.Id = Guid.NewGuid().ToString();
+            model.EvaluatedUserName = model.EvaluatedUserName.ToLower();
 
-            if (this.Context.Entry(model).State == EntityState.Detached)
+            if (_dbContext.Entry(model).State == EntityState.Detached)
             {
-                this.Context.Add(model);
+                _dbContext.Add(model);
             }
             else
             {
-                this.Context.Update(model);
+                _dbContext.Update(model);
             }
 
-            this.Context.SaveChanges();
+            this._dbContext.SaveChanges();
             return View();
         }
 
-        public IActionResult Result(Evaluation model)
+        [Route("Evaluation/{username}/Result")]
+        public IActionResult Result(string username)
         {
-            var evaluations = this.Context.Evaluation.ToList();
-           
-            if(evaluations == null || evaluations.Count() == 0) {
-                return View();
-            }
-            // TODO logic here
-            return View();
+            ViewBag.Username = username;
+            EvaluationResultModel evaluatedResult = _evaluationService.GetEvaluationResult(username.ToLower());
+            
+            return View(evaluatedResult);
         }
+
         public IActionResult Reset(Evaluation model)
         {
-            this.Context.Database.ExecuteSqlRaw("TRUNCATE TABLE [Evaluations]");
+            this._dbContext.Database.ExecuteSqlRaw("TRUNCATE TABLE [Evaluations]");
             return View("Result");
         }
        

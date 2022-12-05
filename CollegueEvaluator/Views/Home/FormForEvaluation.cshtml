@@ -1,0 +1,70 @@
+﻿@using ColleagueEvaluator.Logic.Enums
+@using ColleagueEvaluator.Logic.Services
+@using CollegueEvaluator.Services
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@model Evaluation
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject IComputingWordsService computingWordsService
+@inject IEvaluationService evaluationService
+
+@{
+    ViewData["Title"] = "Оцінювання колег";
+}
+
+@if(SignInManager.IsSignedIn(User))
+{
+	@if(SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin")){
+		<div class="alert alert-info" role="alert">
+		  Ви увійшли як адміністратор і маєте можливість переглядати результат.
+		</div>
+	}
+
+	<br/>
+
+	@if (evaluationService.IsUserVoted(SignInManager.Context.User, ""))
+	{
+		<div class="alert alert-primary" role="alert">
+			Ви уже голосували, два рази проголосувати неможливо!
+		</div>
+	}
+	else
+	{
+		<div class="alert alert-primary" role="alert">
+			Будь ласка, оціність співробітника @ViewBag.Username за критерієями поданими нижче
+		</div>
+		<div style="display: flex; justify-content: center;">
+			<form method="post" action="Home/Save"
+				  style="max-width: 600px; width: 100%; border: gray solid 1px; border-radius: 10px; padding: 15px">
+				<div class="mb-3">
+					<label for="responsibilityInput" class="form-label" style="width: 150px;">Відповідальність</label>
+					@Html.DropDownListFor(model => model.Responsibility, new SelectList(computingWordsService.GetWordsNames(Characteristics.Responsibility)), "-- Оберіть значення --")
+				</div>
+				<div class="mb-3">
+					<label for="performanceInput" class="form-label" style="width: 150px;">Продуктивність</label>
+					@Html.DropDownListFor(model => model.Performance, new SelectList(computingWordsService.GetWordsNames(Characteristics.Performance)), "-- Оберіть значення --")
+		
+				</div>
+				<div class="mb-3">
+					<label for="communicationSkillsInput" class="form-label" style="width: 150px;">Вміння комунікувати</label>
+					@Html.DropDownListFor(model => model.СommunicationSkills, new SelectList(computingWordsService.GetWordsNames(Characteristics.СommunicationSkills)), "-- Оберіть значення --")
+		
+				</div>
+				<div class="mb-3">
+					<label for="qualificationInput" class="form-label" style="width: 150px;">Кваліфікація</label>
+					@Html.DropDownListFor(model => model.Qualification, new SelectList(computingWordsService.GetWordsNames(Characteristics.Qualification)), "-- Оберіть значення --")
+		
+				</div>
+				<button type="submit" class="btn btn-primary">Підтвердити</button>
+			</form>
+		</div>
+	}
+}
+else{
+    <div class="alert alert-primary" role="alert">
+        Щоб розпочати оцінювання увійдіть до системи!
+    </div>
+
+}

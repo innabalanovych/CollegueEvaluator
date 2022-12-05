@@ -1,4 +1,7 @@
+using ColleagueEvaluator.Logic.Mappers;
+using ColleagueEvaluator.Logic.Services;
 using CollegueEvaluator.Data;
+using CollegueEvaluator.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +17,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IComputingWordsService, ComputingWordsService>();
+builder.Services.AddTransient<IEvaluationService, EvaluationService>();
+builder.Services.AddTransient<IWordNamesMapper, WordNamesMapper>();
 
 var app = builder.Build();
 

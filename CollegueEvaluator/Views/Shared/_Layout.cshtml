@@ -28,9 +28,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                         </li>
-                        @if(SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin")){
+                        @if(SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin") && ViewBag.ShowResultButton ?? false){
 		                    <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Result">Результат</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Result" asp-route-username="@ViewBag.Username">Результат</a>
                             </li>
 	                    }     
                     </ul>

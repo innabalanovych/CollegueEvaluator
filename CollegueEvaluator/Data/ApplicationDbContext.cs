@@ -1,4 +1,5 @@
-﻿using CollegueEvaluator.Models;
+﻿using CollegueEvaluator.Data.Configuration;
+using CollegueEvaluator.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,12 @@ namespace CollegueEvaluator.Data
         {
         }
 
-        public DbSet<Evaluation> Evaluation { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new EvaluationEntityTypeConfiguration());
+            base.OnModelCreating(builder);
+        }
+
+        public DbSet<Evaluation> Evaluations { get; set; }
     }
 }

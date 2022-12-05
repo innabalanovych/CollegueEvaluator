@@ -1950,6 +1950,18 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "NumSharp/0.30.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/NumSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NumSharp.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3448,18 +3460,18 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "CollegueEvaluator.Logic/1.0.0": {
+      "ColleagueEvaluator.Logic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "NumSharp": "0.30.0"
+        },
         "compile": {
-          "bin/placeholder/CollegueEvaluator.Logic.dll": {}
+          "bin/placeholder/ColleagueEvaluator.Logic.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CollegueEvaluator.Logic.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+          "bin/placeholder/ColleagueEvaluator.Logic.dll": {}
+        }
       }
     }
   },
@@ -6385,6 +6397,20 @@
         "lib/netstandard2.0/NuGet.Versioning.xml",
         "nuget.versioning.6.2.1.nupkg.sha512",
         "nuget.versioning.nuspec"
+      ]
+    },
+    "NumSharp/0.30.0": {
+      "sha512": "1f8m2B/m/ZSsICaqLszspCyA9/sTHK7wBKEH5KsxGg/r3QCYTc2HnfYOGMeCytvo8/j0v/umn5umLOLhdExlFA==",
+      "type": "package",
+      "path": "numsharp/0.30.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.0/NumSharp.dll",
+        "lib/netstandard2.0/NumSharp.pdb",
+        "numsharp.0.30.0.nupkg.sha512",
+        "numsharp.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -10394,15 +10420,15 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "CollegueEvaluator.Logic/1.0.0": {
+    "ColleagueEvaluator.Logic/1.0.0": {
       "type": "project",
-      "path": "../CollegueEvaluator.Logic/CollegueEvaluator.Logic.csproj",
-      "msbuildProject": "../CollegueEvaluator.Logic/CollegueEvaluator.Logic.csproj"
+      "path": "../ColleagueEvaluator.Logic/ColleagueEvaluator.Logic.csproj",
+      "msbuildProject": "../ColleagueEvaluator.Logic/ColleagueEvaluator.Logic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "CollegueEvaluator.Logic >= 1.0.0",
+      "ColleagueEvaluator.Logic >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.6",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.10",
@@ -10413,19 +10439,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Inna\\.nuget\\packages\\": {}
+    "C:\\Users\\Bohdan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Inna\\Documents\\personal data\\university\\CollegueEvaluator\\CollegueEvaluator\\CollegueEvaluator.csproj",
+      "projectUniqueName": "D:\\Study\\University\\Тимчук - Проектування інтелектуальних інтерфейсів\\Projects\\CollegueEvaluator\\CollegueEvaluator\\CollegueEvaluator.csproj",
       "projectName": "CollegueEvaluator",
-      "projectPath": "C:\\Users\\Inna\\Documents\\personal data\\university\\CollegueEvaluator\\CollegueEvaluator\\CollegueEvaluator.csproj",
-      "packagesPath": "C:\\Users\\Inna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Inna\\Documents\\personal data\\university\\CollegueEvaluator\\CollegueEvaluator\\obj\\",
+      "projectPath": "D:\\Study\\University\\Тимчук - Проектування інтелектуальних інтерфейсів\\Projects\\CollegueEvaluator\\CollegueEvaluator\\CollegueEvaluator.csproj",
+      "packagesPath": "C:\\Users\\Bohdan\\.nuget\\packages\\",
+      "outputPath": "D:\\Study\\University\\Тимчук - Проектування інтелектуальних інтерфейсів\\Projects\\CollegueEvaluator\\CollegueEvaluator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Inna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bohdan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10439,8 +10465,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Inna\\Documents\\personal data\\university\\CollegueEvaluator\\CollegueEvaluator.Logic\\CollegueEvaluator.Logic.csproj": {
-              "projectPath": "C:\\Users\\Inna\\Documents\\personal data\\university\\CollegueEvaluator\\CollegueEvaluator.Logic\\CollegueEvaluator.Logic.csproj"
+            "D:\\Study\\University\\Тимчук - Проектування інтелектуальних інтерфейсів\\Projects\\CollegueEvaluator\\ColleagueEvaluator.Logic\\ColleagueEvaluator.Logic.csproj": {
+              "projectPath": "D:\\Study\\University\\Тимчук - Проектування інтелектуальних інтерфейсів\\Projects\\CollegueEvaluator\\ColleagueEvaluator.Logic\\ColleagueEvaluator.Logic.csproj"
             }
           }
         }
@@ -10504,7 +10530,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
